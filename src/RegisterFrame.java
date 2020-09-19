@@ -14,6 +14,7 @@ public class RegisterFrame extends Frame {
     JPasswordField passwordField=new JPasswordField();
     JCheckBox showPassword=new JCheckBox("Show Password");
     JButton registerButton = new JButton("REGISTER");
+    JLabel infoLabel = new JLabel();
 
     RegisterFrame()
     {
@@ -35,6 +36,7 @@ public class RegisterFrame extends Frame {
         passwordField.setBounds(150,120,150,30);
         showPassword.setBounds(150,150,150,30);
         registerButton.setBounds(150,200,100,30);
+        infoLabel.setBounds(50,250,300,30);
     }
 
     public void addComponentsToContainer(){
@@ -45,6 +47,7 @@ public class RegisterFrame extends Frame {
         panel.add(passwordField);
         panel.add(showPassword);
         panel.add(registerButton);
+        panel.add(infoLabel);
         frame.add(panel);
     }
 
@@ -64,11 +67,23 @@ public class RegisterFrame extends Frame {
             try {
                 user = user.createUser(username, password);
 
-
+                infoLabel.setText("You successfully registered " + user.getUsername());
             } catch (SQLException exception) {
                 exception.printStackTrace();
             }
             System.out.println("User created : "+ username + " " + password);
+        });
+
+        showPassword.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                passwordField.setEchoChar('*');
+
+                if(showPassword.isSelected()){
+                    passwordField.setEchoChar((char)0);
+                }
+
+            }
         });
     }
 

@@ -20,10 +20,11 @@ public class User {
 
         try {
             conn = helper.getConnection();
-            String sql = "insert into users(username, password values (?, ?)";
+            String sql = "insert into users(username, password) " +
+                    " values (?, ?)";
             statement = conn.prepareStatement(sql);
-            statement.setString(1, this.username);
-            statement.setString(2, this.password);
+            statement.setString(1, username);
+            statement.setString(2, password);
 
             int result = statement.executeUpdate();
 
@@ -64,9 +65,9 @@ public class User {
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
     public String getPassword(){
-        return password;
+        return this.password;
     }
 }

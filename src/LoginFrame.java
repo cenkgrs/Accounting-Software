@@ -84,26 +84,20 @@ public class LoginFrame extends MainFrame {
             }
         });
 
-        registerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               RegisterFrame registerFrame = new RegisterFrame();
-               frame.setVisible(false);
-               frame.dispose();
-               registerFrame.setVisible(true);
-            }
+        registerButton.addActionListener(e -> {
+           RegisterFrame registerFrame = new RegisterFrame();
+           frame.setVisible(false);
+           frame.dispose();
+           registerFrame.setVisible(true);
         });
 
-        showPassword.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                passwordField.setEchoChar('*');
+        showPassword.addActionListener(e -> {
+            passwordField.setEchoChar('*');
 
-                if(showPassword.isSelected()){
-                    passwordField.setEchoChar((char)0);
-                }
-
+            if(showPassword.isSelected()){
+                passwordField.setEchoChar((char)0);
             }
+
         });
     }
 
