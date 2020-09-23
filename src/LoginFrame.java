@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 public class LoginFrame extends JFrame {
-    Frame frame = new Frame();
 
     JPanel panel = new JPanel();
     JLabel userLabel=new JLabel("USERNAME");
@@ -20,17 +19,21 @@ public class LoginFrame extends JFrame {
     LoginFrame()
     {
         //Calling methods inside constructor.
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayoutManager();
+        setStyles();
         setLocationAndSize();
         addComponentsToContainer();
         setFrameSettings();
         initListeners();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void setLayoutManager()
     {
         panel.setLayout(null);
+    }
+    public void setStyles() {
+        //userLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
     }
     public void setLocationAndSize(){
         //Setting location and Size of each components using setBounds() method.
@@ -57,14 +60,14 @@ public class LoginFrame extends JFrame {
         //panel.add(resetButton);
         panel.add(registerButton);
         panel.add(infoLabel);
-        frame.add(panel);
+        this.add(panel);
     }
 
     public void setFrameSettings(){
-        frame.setTitle("Login Form");
-        frame.setVisible(true);
-        frame.setBounds(10,10,370,350);
-        frame.setResizable(false);
+        this.setTitle("Login Form");
+        this.setBounds(10,10,370,350);
+        this.setResizable(false);
+        this.setVisible(true);
     }
 
     public void initListeners(){
@@ -78,8 +81,8 @@ public class LoginFrame extends JFrame {
 
                 infoLabel.setText("You successfully logged in : " + username);
 
-                frame.setVisible(false);
-                frame.dispose();
+                this.setVisible(false);
+                this.dispose();
 
                 MainMenu mainMenu = new MainMenu();
 
@@ -91,8 +94,8 @@ public class LoginFrame extends JFrame {
 
         registerButton.addActionListener(e -> {
            RegisterFrame registerFrame = new RegisterFrame();
-           frame.setVisible(false);
-           frame.dispose();
+           this.setVisible(false);
+           this.dispose();
            registerFrame.setVisible(true);
         });
 

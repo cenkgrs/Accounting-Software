@@ -4,9 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-public class RegisterFrame extends Frame {
-    Frame frame = new Frame();
-
+public class RegisterFrame extends JFrame {
     JPanel panel = new JPanel();
     JLabel userLabel=new JLabel("USERNAME");
     JLabel passwordLabel=new JLabel("PASSWORD");
@@ -48,14 +46,14 @@ public class RegisterFrame extends Frame {
         panel.add(showPassword);
         panel.add(registerButton);
         panel.add(infoLabel);
-        frame.add(panel);
+        this.add(panel);
     }
 
     public void setFrameSettings(){
-        frame.setTitle("Register Form");
-        frame.setVisible(true);
-        frame.setBounds(10,10,370,350);
-        frame.setResizable(false);
+        this.setTitle("Register Form");
+        this.setVisible(true);
+        this.setBounds(10,10,370,350);
+        this.setResizable(false);
     }
 
     public void initListeners(){
