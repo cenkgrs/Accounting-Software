@@ -74,16 +74,13 @@ public class RegisterFrame extends Frame {
             System.out.println("User created : "+ username + " " + password);
         });
 
-        showPassword.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                passwordField.setEchoChar('*');
+        showPassword.addActionListener(e -> {
+            passwordField.setEchoChar('*');
 
-                if(showPassword.isSelected()){
-                    passwordField.setEchoChar((char)0);
-                }
-
+            if(showPassword.isSelected()){
+                passwordField.setEchoChar((char)0);
             }
+
         });
     }
 

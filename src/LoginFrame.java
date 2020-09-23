@@ -1,10 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.concurrent.TimeUnit;
 
-public class LoginFrame extends MainFrame {
+public class LoginFrame extends JFrame {
     Frame frame = new Frame();
 
     JPanel panel = new JPanel();
@@ -13,9 +12,10 @@ public class LoginFrame extends MainFrame {
     JTextField userTextField=new JTextField();
     JPasswordField passwordField=new JPasswordField();
     JButton loginButton=new JButton("LOGIN");
-    JButton resetButton=new JButton("RESET");
+    //JButton resetButton=new JButton("RESET");
     JCheckBox showPassword=new JCheckBox("Show Password");
     JButton registerButton = new JButton("REGISTER");
+    JLabel infoLabel = new JLabel();
 
     LoginFrame()
     {
@@ -25,6 +25,7 @@ public class LoginFrame extends MainFrame {
         addComponentsToContainer();
         setFrameSettings();
         initListeners();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void setLayoutManager()
@@ -40,6 +41,7 @@ public class LoginFrame extends MainFrame {
         showPassword.setBounds(150,150,150,30);
         loginButton.setBounds(50,200,100,30);
         registerButton.setBounds(200,200,100,30);
+        infoLabel.setBounds(50,250,250,30);
         //resetButton.setBounds(50,250,100,30);
 
 
@@ -54,6 +56,7 @@ public class LoginFrame extends MainFrame {
         panel.add(loginButton);
         //panel.add(resetButton);
         panel.add(registerButton);
+        panel.add(infoLabel);
         frame.add(panel);
     }
 
@@ -65,23 +68,25 @@ public class LoginFrame extends MainFrame {
     }
 
     public void initListeners(){
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String username = String.valueOf(userTextField.getText());
-                String password = String.valueOf(passwordField.getPassword());
+        loginButton.addActionListener(e -> {
+            String username = String.valueOf(userTextField.getText());
+            String password = String.valueOf(passwordField.getPassword());
 
-                User user = new User();
-                try {
-                    user = user.checkUser(username, password);
+            User user = new User();
+            try {
+                user = user.checkUser(username, password);
 
-                    frame.setVisible(false);
+                infoLabel.setText("You successfully logged in : " + username);
 
-                    System.out.println("Welcome " );
-                } catch (SQLException exception) {
-                    exception.printStackTrace();
-                }
+                frame.setVisible(false);
+                frame.dispose();
+
+                MainMenu mainMenu = new MainMenu();
+
+            } catch (SQLException exception) {
+                exception.printStackTrace();
             }
+
         });
 
         registerButton.addActionListener(e -> {
