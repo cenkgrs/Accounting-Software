@@ -2,9 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainMenu extends JFrame {
-    Frame frame = new Frame();
-    JPanel panel = new JPanel();
-
     // Main menu bar
     JMenuBar menuBar = new JMenuBar();
 
@@ -24,7 +21,7 @@ public class MainMenu extends JFrame {
 
     public void setLayoutManager()
     {
-        panel.setLayout(null);
+        this.setLayout(null);
     }
 
     public JMenuBar createMenuBar(){
@@ -58,9 +55,9 @@ public class MainMenu extends JFrame {
     }
 
     public void setFrameSettings(){
-        frame.setTitle("Accounting Software");
-        frame.setBounds(10,10,1250,750);
-        frame.setResizable(false);
-        frame.setVisible(true);
+        this.setTitle("Accounting Software");
+        this.setBounds(10,10,1250,750);
+        this.setResizable(false);
+        this.setVisible(true);
     }
 }
