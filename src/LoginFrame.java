@@ -66,8 +66,10 @@ public class LoginFrame extends JFrame {
     public void setFrameSettings(){
         this.setTitle("Login Form");
         this.setBounds(10,10,370,350);
+        this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setVisible(true);
+
     }
 
     public void initListeners(){

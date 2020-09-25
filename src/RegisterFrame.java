@@ -53,6 +53,7 @@ public class RegisterFrame extends JFrame {
         this.setTitle("Register Form");
         this.setVisible(true);
         this.setBounds(10,10,370,350);
+        this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
 
