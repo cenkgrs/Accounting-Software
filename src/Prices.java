@@ -11,7 +11,7 @@ public class Prices extends JFrame {
         MenuBar menu = new MenuBar();
         setJMenuBar(menu.createMenuBar());
 
-        getPrices();
+        priceTable = getPrices();
 
         addComponentsToContainer();
 
@@ -34,7 +34,7 @@ public class Prices extends JFrame {
 
     }
 
-    public void getPrices(){
+    public JTable getPrices(){
         Connection conn = null;
         DbHelper dbHelper = new DbHelper();
         Statement statement = null;
@@ -47,26 +47,14 @@ public class Prices extends JFrame {
             statement = conn.createStatement();
             resultSet = statement.executeQuery("SELECT name, price, category_id, firm_id FROM products");
 
-            resultSet.last();
-            int rows = resultSet.getRow();
-            resultSet.beforeFirst();
+            JTableHelper jTableHelper = new JTableHelper();
 
-            String[][] prices = new String[rows][columnNames.length];
-
-            for (int i1 = 0; i1 < rows; i1++) {
-                resultSet.next();
-                for (int j1 = 0; j1 < columnNames.length; j1++) {
-                    prices[i1][j1] = resultSet.getString(j1 + 1);
-                }
-            }
-
-            priceTable = new JTable(prices, columnNames);
-
+            return jTableHelper.createTable(resultSet, columnNames);
 
         }catch (Exception e){
 
         }
-
+        return priceTable;
     }
 }
 
