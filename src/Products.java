@@ -1,24 +1,24 @@
 import javax.swing.*;
-import java.awt.*;
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
-public class Prices extends JFrame {
+public class Products extends JFrame{
+
     private JPanel panel1 = new JPanel();
     private JTable priceTable;
-    private JLabel priceHeader;
+    private JLabel priceHeader = new JLabel();
     private JScrollPane jScrollPane;
 
-    public Prices(){
+    public Products(){
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         MenuBar menu = new MenuBar();
         setJMenuBar(menu.createMenuBar());
 
-        priceTable = getPrices();
+        priceTable = getProducts();
         jScrollPane = new JScrollPane(priceTable);
 
         addComponentsToContainer();
-
         setFrameSettings();
 
     }
@@ -30,7 +30,7 @@ public class Prices extends JFrame {
     }
 
     public void setFrameSettings(){
-        setTitle("Prices List");
+        setTitle("Products List");
         setBounds(10,10,1250,750);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -38,18 +38,18 @@ public class Prices extends JFrame {
 
     }
 
-    public JTable getPrices(){
+    public JTable getProducts(){
         Connection conn = null;
         DbHelper dbHelper = new DbHelper();
         Statement statement = null;
         ResultSet resultSet = null;
 
-        String[] columnNames = { "ID", "Price", "Currency", "Tax" };
+        String[] columnNames = { "ID", "Name", "Price_id", "Category_id", "Firm_id" };
 
         try{
             conn = dbHelper.getConnection();
             statement = conn.createStatement();
-            resultSet = statement.executeQuery("SELECT id, price, currency, tax FROM prices");
+            resultSet = statement.executeQuery("SELECT id, name, price, category_id, firm_id FROM products");
 
             JTableHelper jTableHelper = new JTableHelper();
 
@@ -61,4 +61,3 @@ public class Prices extends JFrame {
         return priceTable;
     }
 }
-

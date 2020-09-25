@@ -55,6 +55,13 @@ public class MenuBar extends JFrame{
         menuBar.add(settingsMenu);
         menuBar.add(productsMenu);
 
+        productsMenuItem1.addActionListener(e -> {
+            this.setVisible(false);
+            this.dispose();
+
+            Products productsFrame = new Products();
+        });
+
         productsMenuItem2.addActionListener(e -> {
             this.setVisible(false);
             this.dispose();
