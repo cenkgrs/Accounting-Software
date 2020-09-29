@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,11 +8,14 @@ import java.sql.Statement;
 
 public class Products extends JFrame{
 
-    private JPanel panel1 = new JPanel();
+    private JPanel panel = new JPanel();
+    private JPanel editPanel = new JPanel();
+    private JPanel tablePanel = new JPanel();
+
     private JTable productTable;
     private JLabel priceHeader = new JLabel();
     private JScrollPane jScrollPane;
-    private JButton deleteButton = new JButton();
+    private JButton deleteButton = new JButton("Delete Product");
     private DefaultTableModel model;
 
     public Products(){
@@ -19,26 +23,45 @@ public class Products extends JFrame{
         MenuBar menu = new MenuBar();
         setJMenuBar(menu.createMenuBar());
 
+        // Cenk: This will fill the JTable with Products
         productTable = getProducts();
         jScrollPane = new JScrollPane(productTable);
 
-        addComponentsToContainer();
+        setLayoutManager();
         setLocationAndSize();
+        addComponentsToContainer();
         initListeners();
         setFrameSettings();
 
     }
 
-    public void addComponentsToContainer(){
-        //Adding each components to the Container
-        this.add(deleteButton);
-        this.add(priceHeader);
-        this.add(jScrollPane);
+    public void setLayoutManager()
+    {
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+        editPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 1 ,2));
+        tablePanel.setLayout(new FlowLayout(FlowLayout.LEFT, 1 ,2));
     }
 
     public void setLocationAndSize(){
-
+        /*deleteButton.setBounds(60,20,80,20);
+        jScrollPane.setBounds(60,200,80,20);*/
     }
+
+    public void addComponentsToContainer(){
+        //Adding each components to the Container
+        editPanel.add(deleteButton);
+        editPanel.add(priceHeader);
+
+        tablePanel.add(jScrollPane);
+
+        panel.add(editPanel);
+        panel.add(tablePanel);
+
+        this.add(panel);
+        //this.pack();
+    }
+
+
 
     public void setFrameSettings(){
         setTitle("Products List");
@@ -77,7 +100,7 @@ public class Products extends JFrame{
 
             model = (DefaultTableModel) productTable.getModel();
 
-            if(productTable.getSelectedRow() == 1){
+            if(productTable.getSelectedRow() != -1){
                 model.removeRow(productTable.getSelectedRow());
             }else{
                 if(productTable.getRowCount() == 0){
