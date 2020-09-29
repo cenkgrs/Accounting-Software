@@ -55,8 +55,8 @@ public class Prices extends JFrame {
 
             return jTableHelper.createTable(resultSet, columnNames);
 
-        }catch (Exception e){
-
+        }catch (SQLException exception){
+            dbHelper.showErrorMessage(exception);
         }
         return priceTable;
     }

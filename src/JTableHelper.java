@@ -1,9 +1,11 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class JTableHelper {
-    JTable priceTable = new JTable();
+    DefaultTableModel model;
+    JTable priceTable;
 
     public JTable createTable(ResultSet resultSet, String[] columns){
         try {
@@ -20,7 +22,10 @@ public class JTableHelper {
                 }
             }
 
-            return new JTable(prices, columns);
+            model = new DefaultTableModel(prices, columns);
+            priceTable = new JTable(model);
+
+            return priceTable;
 
         }catch (SQLException e){
 
