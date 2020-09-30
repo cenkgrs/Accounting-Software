@@ -62,7 +62,7 @@ public class MenuBar extends JFrame{
             frame.setVisible(false);
             frame.dispose();
 
-            Products productsFrame = new Products();
+            ProductsFrame productsFrame = new ProductsFrame();
         });
 
         productsMenuItem2.addActionListener(e -> {
