@@ -7,7 +7,7 @@ public class MainMenu extends JFrame {
     public MainMenu(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         MenuBar menu = new MenuBar();
-        setJMenuBar(menu.createMenuBar());
+        setJMenuBar(menu.createMenuBar(this));
         //setJMenuBar(createMenuBar());
 
         setLayoutManager();

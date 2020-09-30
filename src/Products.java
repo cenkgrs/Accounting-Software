@@ -33,7 +33,7 @@ public class Products extends JFrame{
     public Products(){
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         MenuBar menu = new MenuBar();
-        setJMenuBar(menu.createMenuBar());
+        setJMenuBar(menu.createMenuBar(this));
 
         // Cenk: This will fill the JTable with Products
         productTable = getProducts();

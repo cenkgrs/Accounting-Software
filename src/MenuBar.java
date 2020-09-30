@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class MenuBar extends JFrame{
 
-    public JMenuBar createMenuBar(){
+    public JMenuBar createMenuBar(JFrame frame){
         // Main menu bar
         JMenuBar menuBar = new JMenuBar();
 
@@ -59,22 +59,22 @@ public class MenuBar extends JFrame{
         menuBar.add(productsMenu);
 
         productsMenuItem1.addActionListener(e -> {
-            this.setVisible(false);
-            this.dispose();
+            frame.setVisible(false);
+            frame.dispose();
 
             Products productsFrame = new Products();
         });
 
         productsMenuItem2.addActionListener(e -> {
-            this.setVisible(false);
-            this.dispose();
+            frame.setVisible(false);
+            frame.dispose();
 
             Prices pricesFrame = new Prices();
         });
 
         userMenuItem4.addActionListener(e -> {
-            this.setVisible(false);
-            this.dispose();
+            frame.setVisible(false);
+            frame.dispose();
 
             LoginFrame loginFrame = new LoginFrame();
         });
