@@ -19,6 +19,7 @@ public class MenuBar extends JFrame{
         JMenuItem userMenuItem1;
         JMenuItem userMenuItem2;
         JMenuItem userMenuItem3;
+        JMenuItem userMenuItem4;
 
         JMenuItem productsMenuItem1;
         JMenuItem productsMenuItem2;
@@ -36,10 +37,12 @@ public class MenuBar extends JFrame{
         userMenuItem1 = new JMenuItem("Details");
         userMenuItem2 = new JMenuItem("My Account Settings");
         userMenuItem3 = new JMenuItem("Request Permission");
+        userMenuItem4 = new JMenuItem("Log out");
 
         userMenu.add(userMenuItem1);
         userMenu.add(userMenuItem2);
         userMenu.add(userMenuItem3);
+        userMenu.add(userMenuItem4);
 
         productsMenuItem1 = new JMenuItem("Product List");
         productsMenuItem2 = new JMenuItem("Prices List");
@@ -67,6 +70,13 @@ public class MenuBar extends JFrame{
             this.dispose();
 
             Prices pricesFrame = new Prices();
+        });
+
+        userMenuItem4.addActionListener(e -> {
+            this.setVisible(false);
+            this.dispose();
+
+            LoginFrame loginFrame = new LoginFrame();
         });
 
         return menuBar;
