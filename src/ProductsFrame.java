@@ -164,8 +164,19 @@ public class ProductsFrame extends JFrame{
 
             System.out.println(productTable.getSelectedRowCount());
             if(productTable.getSelectedRowCount() != 0){
-                System.out.println(productTable.getSelectedRowCount());
+                //Remove row from table
                 model.removeRow(productTable.getSelectedRow());
+
+                //Get selected product id
+                int id = Integer.parseInt(editIdField.getText());
+
+                //Delete product from table
+                Product product = new Product();
+                boolean status = product.deleteProduct(id);
+
+                if(status){
+                    JOptionPane.showMessageDialog(this, "Product is successfully deleted");
+                }
             }else{
                 if(productTable.getRowCount() == 0){
                     JOptionPane.showMessageDialog(this, "Table is empty");
@@ -201,6 +212,7 @@ public class ProductsFrame extends JFrame{
         productTable.getSelectionModel().addListSelectionListener(e -> {
             int row = productTable.getSelectedRow();
 
+            // Check if this is a selection not button click
             if(row != -1){
                 editIdField.setText(productTable.getValueAt(row,0).toString());
                 editCodeField.setText(productTable.getValueAt(row,1).toString());

@@ -20,7 +20,6 @@ public class Product {
         Connection conn = null;
         DbHelper dbHelper = new DbHelper();
         PreparedStatement st = null;
-        ResultSet resultSet = null;
 
         try{
             conn = dbHelper.getConnection();
@@ -42,5 +41,25 @@ public class Product {
             return false;
         }
 
+    }
+
+    public boolean deleteProduct(int id){
+        Connection conn = null;
+        DbHelper dbHelper = new DbHelper();
+        PreparedStatement st = null;
+
+        try{
+            conn = dbHelper.getConnection();
+            String sql = "DELETE FROM products WHERE id = ?";
+            st = conn.prepareStatement(sql);
+            st.setInt(1, id);
+            st.execute();
+
+            return true;
+        }catch (SQLException exception){
+            dbHelper.showErrorMessage(exception);
+
+            return false;
+        }
     }
 }
