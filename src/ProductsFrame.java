@@ -208,6 +208,25 @@ public class ProductsFrame extends JFrame{
 
         });
 
+        insertButton.addActionListener(e -> {
+            String name = addNameField.getText();
+            String code = addCodeField.getText();
+            String price = addPriceField.getText();
+            String category = addCategoryField.getText();
+            String firm = addFirmField.getText();
+
+            Product product = new Product();
+            boolean status = product.insertProduct(name, code, price, category, firm);
+
+            if (status){
+                JOptionPane.showMessageDialog(this, "Product successfully inserted");
+                return;
+            }
+
+            JOptionPane.showMessageDialog(this, "There was an error while inserting the product");
+
+        });
+
         // Get row values to edit panel
         productTable.getSelectionModel().addListSelectionListener(e -> {
             int row = productTable.getSelectedRow();
