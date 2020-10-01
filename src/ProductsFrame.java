@@ -56,6 +56,8 @@ public class ProductsFrame extends JFrame{
         productTable = getProducts();
         jScrollPane = new JScrollPane(productTable);
 
+        model = (DefaultTableModel) productTable.getModel();
+
         setLayoutManager();
         setLocationAndSize();
         addComponentsToContainer();
@@ -160,9 +162,9 @@ public class ProductsFrame extends JFrame{
     public void initListeners(){
         deleteButton.addActionListener(e -> {
 
-            model = (DefaultTableModel) productTable.getModel();
-            System.out.println(productTable.getSelectedRow());
-            if(productTable.getSelectedRow() != 0){
+            System.out.println(productTable.getSelectedRowCount());
+            if(productTable.getSelectedRowCount() != 0){
+                System.out.println(productTable.getSelectedRowCount());
                 model.removeRow(productTable.getSelectedRow());
             }else{
                 if(productTable.getRowCount() == 0){
@@ -198,21 +200,21 @@ public class ProductsFrame extends JFrame{
         // Get row values to edit panel
         productTable.getSelectionModel().addListSelectionListener(e -> {
             int row = productTable.getSelectedRow();
-            int column = columnNames.length;
 
-            editIdField.setText(productTable.getValueAt(row,0).toString());
-            editCodeField.setText(productTable.getValueAt(row,1).toString());
-            editNameField.setText(productTable.getValueAt(row,2).toString());
-            editPriceField.setText(productTable.getValueAt(row,3).toString());
-            editCategoryField.setText(productTable.getValueAt(row,4).toString());
-            editFirmField.setText(productTable.getValueAt(row,5).toString());
-
+            if(row != -1){
+                editIdField.setText(productTable.getValueAt(row,0).toString());
+                editCodeField.setText(productTable.getValueAt(row,1).toString());
+                editNameField.setText(productTable.getValueAt(row,2).toString());
+                editPriceField.setText(productTable.getValueAt(row,3).toString());
+                editCategoryField.setText(productTable.getValueAt(row,4).toString());
+                editFirmField.setText(productTable.getValueAt(row,5).toString());
+            }
         });
     }
 
     // Cenk: This function creates placeholder functionality for every textField
     public void createPlaceholder(JTextField textField, String placeholder){
-        System.out.println(placeholder);
+
         textField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {

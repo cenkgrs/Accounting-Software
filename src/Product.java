@@ -38,8 +38,9 @@ public class Product {
 
         }catch (SQLException exception){
             dbHelper.showErrorMessage(exception);
+
+            return false;
         }
 
-        return true;
     }
 }
