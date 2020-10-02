@@ -195,11 +195,11 @@ public class ProductsFrame extends JFrame{
             String firm = editFirmField.getText();
 
             Product product = new Product();
-            boolean status = product.editProduct(id, name, code, price, category, firm);
+            model = product.editProduct(id, name, code, price, category, firm);
 
             // If successful refresh the table
-            if(status){
-                productTable.repaint();
+            if(model != null){
+                productTable.setModel(model);
                 JOptionPane.showMessageDialog(this, "Product successfully edited");
                 return;
             }

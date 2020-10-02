@@ -52,7 +52,7 @@ public class Product {
 
     }
 
-    public boolean editProduct(int id, String name, String code, String price, String category_id, String firm_id){
+    public DefaultTableModel editProduct(int id, String name, String code, String price, String category_id, String firm_id){
         Connection conn = null;
         DbHelper dbHelper = new DbHelper();
         PreparedStatement st = null;
@@ -69,12 +69,12 @@ public class Product {
             st.setInt(6, id);
             st.executeUpdate();
 
-            return true;
+            return getProducts();
 
         }catch (SQLException exception){
             dbHelper.showErrorMessage(exception);
 
-            return false;
+            return model;
         }
 
     }
@@ -97,5 +97,30 @@ public class Product {
 
             return false;
         }
+    }
+
+    public DefaultTableModel getProducts(){
+        Connection conn = null;
+        DbHelper dbHelper = new DbHelper();
+        PreparedStatement st = null;
+        ResultSet resultSet = null;
+
+        try{
+            conn = dbHelper.getConnection();
+            String sql = "SELECT id, code, name, price, category_id, firm_id FROM products";
+            st = conn.prepareStatement(sql);
+
+            resultSet = st.executeQuery(sql);
+
+            JTableHelper jTableHelper = new JTableHelper();
+            model = jTableHelper.createModel(resultSet, columns);
+
+            return model;
+
+        }catch (SQLException exception){
+            dbHelper.showErrorMessage(exception);
+        }
+
+        return model;
     }
 }
