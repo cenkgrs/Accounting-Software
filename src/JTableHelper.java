@@ -33,6 +33,7 @@ public class JTableHelper {
         return priceTable;
     }
 
+    // We create new Table Model to refresh the data on JTable
     public DefaultTableModel createModel(ResultSet resultSet, String[] columns){
         try {
             resultSet.last();

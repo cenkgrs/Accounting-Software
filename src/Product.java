@@ -38,12 +38,8 @@ public class Product {
             st.setString(5, firm_id);
             st.executeUpdate();
 
-            resultSet = st.executeQuery("SELECT id, code, name, price, category_id, firm_id FROM products");
-
-            JTableHelper jTableHelper = new JTableHelper();
-            model = jTableHelper.createModel(resultSet, columns);
-
-            return model;
+            // Get new Table Model after data change
+            return getProducts();
 
         }catch (SQLException exception){
             dbHelper.showErrorMessage(exception);
@@ -69,6 +65,7 @@ public class Product {
             st.setInt(6, id);
             st.executeUpdate();
 
+            // Get new Table Model after data change
             return getProducts();
 
         }catch (SQLException exception){
