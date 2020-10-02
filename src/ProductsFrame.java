@@ -13,7 +13,6 @@ import java.sql.Statement;
 public class ProductsFrame extends JFrame{
 
     String[] columnNames = { "ID", "Code", "Name", "Price_id", "Category_id", "Firm_id"};
-    String[] columns = {"Name", "Code", "Price_id", "Category_id", "Firm_id"};
 
     private JPanel panel = new JPanel();
     private JPanel headerPanel = new JPanel();
