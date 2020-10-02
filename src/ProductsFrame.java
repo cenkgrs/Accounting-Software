@@ -216,10 +216,13 @@ public class ProductsFrame extends JFrame{
             String firm = addFirmField.getText();
 
             Product product = new Product();
-            boolean status = product.insertProduct(name, code, price, category, firm);
+            model = product.insertProduct(productTable, name, code, price, category, firm);
 
-            if (status){
+            productTable.setModel(model);
+
+            if (model != null){
                 JOptionPane.showMessageDialog(this, "Product successfully inserted");
+                productTable.setModel(model);
                 return;
             }
 

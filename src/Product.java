@@ -1,3 +1,5 @@
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 
 public class Product {
@@ -6,6 +8,9 @@ public class Product {
     private String price;
     private String category_id;
     private String firm_id;
+    String[] columns = {"Name", "Code", "Price_id", "Category_id", "Firm_id"};
+    DefaultTableModel model;
+
 
     public Product(){}
     public Product(String name, String code, String price, String category_id, String firm_id) {
@@ -16,10 +21,11 @@ public class Product {
         this.firm_id = firm_id;
     }
 
-    public boolean insertProduct(String name, String code, String price, String category_id, String firm_id){
+    public DefaultTableModel insertProduct(JTable table, String name, String code, String price, String category_id, String firm_id){
         Connection conn = null;
         DbHelper dbHelper = new DbHelper();
         PreparedStatement st = null;
+        ResultSet resultSet = null;
 
         try{
             conn = dbHelper.getConnection();
@@ -32,13 +38,18 @@ public class Product {
             st.setString(5, firm_id);
             st.executeUpdate();
 
-            return true;
+            resultSet = st.executeQuery("SELECT id, code, name, price, category_id, firm_id FROM products");
+
+            JTableHelper jTableHelper = new JTableHelper();
+            model = jTableHelper.createModel(resultSet, columns);
+
+            return model;
 
         }catch (SQLException exception){
             dbHelper.showErrorMessage(exception);
-
-            return false;
         }
+        return model;
+
     }
 
     public boolean editProduct(int id, String name, String code, String price, String category_id, String firm_id){
