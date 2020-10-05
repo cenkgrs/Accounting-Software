@@ -8,15 +8,27 @@ public class UserDetailsFrame extends JFrame{
     private JLabel firstnameShowLabel;
     private JLabel lastnameLabel;
     private JLabel lastnameShowLabel;
+    private User user;
 
-    public UserDetailsFrame(){
+    public UserDetailsFrame(User user){
+        this.user = user;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         MenuBar menu = new MenuBar();
-        setJMenuBar(menu.createMenuBar(this));
+        setJMenuBar(menu.createMenuBar(this, user));
 
+        fillLabels();
         addComponentsToContainer();
         setFrameSettings();
+    }
+
+    public void fillLabels(){
+        // Cenk: Get all label values from the logged in user and set to labels
+        if(user != null){
+            usernameShowLabel.setText(user.getUsername());
+            firstnameShowLabel.setText(user.getFirstname());
+            lastnameShowLabel.setText(user.getLastname());
+        }
     }
 
     public void addComponentsToContainer(){

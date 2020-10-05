@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class MenuBar extends JFrame{
 
-    public JMenuBar createMenuBar(JFrame frame){
+    public JMenuBar createMenuBar(JFrame frame, User user){
         // Main menu bar
         JMenuBar menuBar = new JMenuBar();
 
@@ -76,7 +76,7 @@ public class MenuBar extends JFrame{
             frame.setVisible(false);
             frame.dispose();
 
-            UserDetailsFrame userDetailsFrame = new UserDetailsFrame();
+            UserDetailsFrame userDetailsFrame = new UserDetailsFrame(user);
         });
         userMenuItem4.addActionListener(e -> {
             frame.setVisible(false);

@@ -12,7 +12,7 @@ public class Prices extends JFrame {
     public Prices(){
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         MenuBar menu = new MenuBar();
-        setJMenuBar(menu.createMenuBar(this));
+        setJMenuBar(menu.createMenuBar(this, null));
 
         priceTable = getPrices();
         jScrollPane = new JScrollPane(priceTable);

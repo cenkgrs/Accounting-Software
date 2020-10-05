@@ -80,13 +80,13 @@ public class LoginFrame extends JFrame {
             User user = new User();
             try {
                 user = user.checkUser(username, password);
-
+                System.out.println(user.getUsername());
                 infoLabel.setText("You successfully logged in : " + username);
 
                 this.setVisible(false);
                 this.dispose();
 
-                MainMenu mainMenu = new MainMenu();
+                MainMenu mainMenu = new MainMenu(user);
 
             } catch (SQLException exception) {
                 exception.printStackTrace();

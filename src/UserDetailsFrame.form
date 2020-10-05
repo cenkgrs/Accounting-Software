@@ -22,7 +22,7 @@
           <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Cenk"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="d0837" class="javax.swing.JLabel" binding="firstnameLabel">
@@ -39,7 +39,7 @@
           <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Cenk"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="19f46" class="javax.swing.JLabel" binding="lastnameLabel">
@@ -57,7 +57,7 @@
           <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Gürses"/>
+          <text value=""/>
         </properties>
       </component>
       <vspacer id="2153e">

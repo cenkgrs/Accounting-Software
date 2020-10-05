@@ -4,12 +4,17 @@ public class User {
 
     private String username;
     private String password;
+    private String firstname;
+    private String lastname;
+
 
     public User(){}
 
-    public User(String username, String password){
+    public User(String username, String password, String firstname, String lastname){
         this.username = username;
         this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
     }
 
     public User createUser(String username, String password, String firstname, String lastname) throws SQLException {
@@ -31,7 +36,7 @@ public class User {
 
             int result = statement.executeUpdate();
 
-            user = new User(username, password);
+            user = new User(username, password, firstname, lastname);
 
             System.out.println("Kayıt eklendi : "+ result);
 
@@ -44,26 +49,33 @@ public class User {
     }
 
     public User checkUser(String username, String password) throws SQLException{
-        Connection conn = null;
         DbHelper helper = new DbHelper();
-        Statement statement = null;
-        ResultSet resultSet = null;
-        User user = null;
+        Connection conn;
+        PreparedStatement statement;
+        ResultSet resultSet;
+        User user;
+
+        String sql = "select * from users where username = ? and password = ? ";
 
         try {
             conn = helper.getConnection();
-            statement = conn.createStatement();
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, username);
+            statement.setString(2, password);
+            resultSet = statement.executeQuery();
 
-            resultSet = statement.executeQuery("select name, password from users where username = ? and password = ?");
+            if(resultSet.next()){
+                user = new User(resultSet.getString("username"), resultSet.getString("password"),
+                        resultSet.getString("firstname"), resultSet.getString("lastname"));
 
-            while (resultSet.next()){
-                user = new User(resultSet.getString("username"), resultSet.getString("password"));
+                return user;
             }
 
         } catch (SQLException exception){
-
+            helper.showErrorMessage(exception);
         }
-        return user;
+
+        return null;
 
     }
 
@@ -73,4 +85,7 @@ public class User {
     public String getPassword(){
         return this.password;
     }
+    public String getFirstname() { return this.firstname; }
+    public String getLastname() { return this.lastname; }
+
 }

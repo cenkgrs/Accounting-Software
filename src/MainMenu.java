@@ -4,11 +4,10 @@ import java.awt.event.ActionListener;
 
 public class MainMenu extends JFrame {
 
-    public MainMenu(){
+    public MainMenu(User user){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         MenuBar menu = new MenuBar();
-        setJMenuBar(menu.createMenuBar(this));
-        //setJMenuBar(createMenuBar());
+        setJMenuBar(menu.createMenuBar(this, user));
 
         setLayoutManager();
         addComponentsToContainer();
@@ -19,8 +18,6 @@ public class MainMenu extends JFrame {
     {
         this.setLayout(null);
     }
-
-
 
     public void addComponentsToContainer(){
         //Adding each components to the Container

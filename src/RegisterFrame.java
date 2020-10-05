@@ -91,7 +91,7 @@ public class RegisterFrame extends JFrame {
                 this.setVisible(false);
                 this.dispose();
 
-                MainMenu mainMenu = new MainMenu();
+                MainMenu mainMenu = new MainMenu(user);
             } catch (SQLException exception) {
                 exception.printStackTrace();
             }
