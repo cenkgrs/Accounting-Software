@@ -72,6 +72,12 @@ public class MenuBar extends JFrame{
             Prices pricesFrame = new Prices();
         });
 
+        userMenuItem1.addActionListener(e -> {
+            frame.setVisible(false);
+            frame.dispose();
+
+            UserDetailsFrame userDetailsFrame = new UserDetailsFrame();
+        });
         userMenuItem4.addActionListener(e -> {
             frame.setVisible(false);
             frame.dispose();

@@ -12,7 +12,7 @@ public class User {
         this.password = password;
     }
 
-    public User createUser(String username, String password) throws SQLException {
+    public User createUser(String username, String password, String firstname, String lastname) throws SQLException {
         Connection conn = null;
         DbHelper helper = new DbHelper();
         PreparedStatement statement = null;
@@ -20,11 +20,14 @@ public class User {
 
         try {
             conn = helper.getConnection();
-            String sql = "insert into users(username, password) " +
-                    " values (?, ?)";
+            String sql = "insert into users(username, password, firstname, lastname) " +
+                    " values (?, ?, ?, ?)";
             statement = conn.prepareStatement(sql);
             statement.setString(1, username);
             statement.setString(2, password);
+            statement.setString(3, firstname);
+            statement.setString(4, lastname);
+
 
             int result = statement.executeUpdate();
 
